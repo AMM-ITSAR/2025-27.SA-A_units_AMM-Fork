@@ -9,6 +9,6 @@ def test_calcola_punti_fedelta_zero_punti_per_dieci_euro_acquisto():
 # inferire la presenza di eccezioni
 # buona pratica per test che cercano appositamente situazioni limite
 # si verifica inoltre che il messaggio dell'eccezione sia esattamente quello che cercavamo
-def test_calcola_punti_fedelta_zero_punti_per_dieci_euro_acquisto_raise():
+def test_calcola_punti_fedelta_raise_totale_acquisto_negativo():
     with pytest.raises(ValueError, match=r"^il totale speso non può essere negativo$"):
         ecommerce.calcola_punti_fedelta(-3)
