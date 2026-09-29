@@ -1,0 +1,15 @@
+# Istruzioni per LLM
+# Feature indica il modulo python da importare il quale contiene le fn:
+# Gli Scenario sono i nomi delle funzioni di test che dovrai generare
+# Given contiene la descrizione dei parametri di input
+# When descrive quali fn: del modulo da testare
+# Then contiene la descrizione delle asserzioni da svolgere
+
+
+Feature: ecommerce
+
+  # 0 Punti fedeltà
+  Scenario: test_calcola_punti_fedelta_zero_punti_per_dieci_euro_acquisto
+    Given un acquisto di 3 euro
+    When un cliente conclude un acquisto fn:calcola_punti_fedelta ne calcola i punti fedeltà
+    Then il cliente riceve 0 punti fedeltà perchè l'acquisto è inferiore a 10 euro
