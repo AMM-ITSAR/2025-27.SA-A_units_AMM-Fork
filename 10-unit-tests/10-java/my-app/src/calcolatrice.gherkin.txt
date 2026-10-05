@@ -1,0 +1,56 @@
+# Istruzioni per LLM
+# Feature indica il modulo python da importare il quale contiene le fn:
+# Gli Scenario sono i nomi delle funzioni di test che dovrai generare
+# Given contiene la descrizione dei parametri di input
+# When descrive quali fn: del modulo da testare
+# Then contiene la descrizione delle asserzioni da svolgere
+
+Feature: CalcolatriceCLI
+
+  # Istanziamento della classe per copertura costruttore
+  Scenario: test_istanziamento_classe
+    Given la classe CalcolatriceCLI
+    When viene creata un'istanza della classe
+    Then L'oggetto viene creato con successo
+
+  # Calcola Addizione
+  Scenario: test_calcola_addizione
+    Given due numeri di tipo int var1 e var2 e operazione = "addizione"
+    When viene chiamata la fn: eseguiCalcolo
+    Then Il risultato stampato è la somma di var1 e var2 con la formattazione di stampaRisultato
+
+  # Calcola Sottrazione
+  Scenario: test_calcola_sottrazione
+    Given due numeri di tipo int var1 e var2 e operazione = "sottrazione"
+    When viene chiamata la fn: eseguiCalcolo
+    Then Il risultato stampato è la sottrazione di var1 e var2 con la formattazione di stampaRisultato
+
+  # Calcola Moltiplicazione
+  Scenario: test_calcola_moltiplicazione
+    Given due numeri di tipo int var1 e var2 e operazione = "moltiplicazione"
+    When viene chiamata la fn: eseguiCalcolo
+    Then Il risultato stampato è la moltiplicazione di var1 e var2 con la formattazione di stampaRisultato
+
+  # Calcola Divisione
+  Scenario: test_calcola_divisione
+    Given due numeri di tipo int var1 e var2 con var2 diverso da 0 e operazione = "divisione"
+    When viene chiamata la fn: eseguiCalcolo
+    Then Il risultato stampato è la divisione di var1 e var2 come double con la formattazione di stampaRisultato
+
+  # Calcola Divisione col 0
+  Scenario: test_calcola_divisione_col_0
+    Given due numeri di tipo int var1 e var2 e operazione = "divisione"
+    When un utente immette var2 = 0 e viene chiamata la fn: eseguiCalcolo
+    Then La calcolatrice stampa "Errore: Impossibile dividere per zero!" e si ferma
+
+  # Gestione operazione non riconosciuta
+  Scenario: test_operazione_non_riconosciuta
+    Given due numeri di tipo int var1 e var2 e una operazione non valida
+    When viene chiamata la fn: eseguiCalcolo
+    Then La calcolatrice stampa "Operazione non riconosciuta. Scegli tra: addizione, sottrazione, moltiplicazione, divisione."
+
+  # Esecuzione del metodo main CLI
+  Scenario: test_main_cli_input_utente
+    Given un flusso di input contenente il nome dell'operazione e i due numeri var1 e var2
+    When viene chiamata la fn: main
+    Then La calcolatrice legge gli input, applica trim e toLowerCase all'operazione, ed esegue il calcolo stampando l'intestazione e il risultato
