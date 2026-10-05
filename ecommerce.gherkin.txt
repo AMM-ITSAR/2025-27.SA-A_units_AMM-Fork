@@ -13,3 +13,9 @@ Feature: ecommerce
     Given un acquisto di 3 euro
     When un cliente conclude un acquisto fn:calcola_punti_fedelta ne calcola i punti fedeltà
     Then il cliente riceve 0 punti fedeltà perchè l'acquisto è inferiore a 10 euro
+
+  
+  Scenario: test_calcola_totale_ordine
+    Given righe_carrello una lista con un dizionario che ha chiave "nome" e valore "mele"
+    When un cliente richiede l'esecuzione di fn:calcola_totale_ordine avente righe_carrello come primo parametro e come secondo un dizionario che rappresenta il magazzino senza mele
+    Then il valore di ritorno deve avere escluso le mele dal totale perchè non sono disponibili  in magazzino
