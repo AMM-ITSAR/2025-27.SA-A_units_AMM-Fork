@@ -174,3 +174,61 @@ Feature: ecommerce
     Given un cliente che ha speso 1000 euro
     When fn:riepilogo_cliente calcola il riepilogo del cliente
     Then il riepilogo contiene totale_speso 1000, punti 100 e livello "silver"
+  # 1 Sconto su prezzo
+  Scenario: test_calcolo_prezzo_scontato_sopra_100
+    Given un prezzo di 80 e uno sconto di 1000
+    When un dipendente applica un sconto fn:calcola_prezzo_scontato gli dai il prezzo scontato
+    Then il dipendente riceve l'errore "la percentuale di sconto deve essere tra 0 e 100"
+
+  Scenario: test_calcolo_prezzo_scontato_prezzo_negativo
+    Given un prezzo di -80 e uno sconto di 10
+    When un dipendente applica un sconto fn:calcola_prezzo_scontato gli dai il prezzo scontato
+    Then il dipendente riceve l'errore "il prezzo non può essere negativo"
+  
+  Scenario: test_applica_codice_sconto_non_trovato
+    Given un prezzo di 120, una chiave 10 e un dizionario {1: 10, 2: 15}
+    When un dipendente applica un sconto tramite codice fn:applica_codice_sconto gli dai il prezzo scontato
+    Then il dipendente riceve il prezzo inalterato per il codice non è presente nel dizionario
+
+  # 3 Calcolo di IVA su prezzo
+    Scenario: test_calcola_iva_prezzo_negativo
+      Given un prezzo di -50 netto e una aliquota di 20
+      When un dipendente calcola un iva fn:calcola_iva gli dai il prezzo con l'incremento dell'iva
+      Then il dipendente riceve un errore "il prezzo netto non può essere negativo"
+
+    Scenario: test_calcola_iva_prezzo_negativo
+      Given un prezzo di 50 netto e una aliquota di -20
+      When un dipendente calcola un iva fn:calcola_iva gli dai il prezzo con l'incremento dell'iva
+      Then il dipendente riceve un errore "l'aliquota non può essere negativa"
+  
+  # 4 Modifiche delle righe del carrello
+    Scenario: test_crea_riga_carrello
+      Given il nome_prodotto Cola, il prezzo_unitario 0, quantita di 300
+      When il cliente aggiunge un riga al carrello fn:calcola_iva gli dai il prezzo con l'incremento dell'iva
+      Then il cliente riceve l'errore "il prezzo unitario non può essere negativo"
+
+    Scenario: test_crea_riga_carrello
+      Given il nome_prodotto Cola, il prezzo_unitario 10, quantita di -1
+      When il cliente aggiunge un riga al carrello fn:calcola_iva gli dai il prezzo con l'incremento dell'iva
+      Then il cliente riceve l'errore "la quantità deve essere maggiore di zero"
+
+    Scenario: test_svuota_articoli_esauriti_articoli_presenti
+      Given le righe_carrello [{
+        "nome": Sushi,
+        "prezzo_unitario": 30,
+        "quantita": 2,
+        "subtotale": round(prezzo_unitario * quantita, 2),
+      }] e il dizionario magazzino {Sushi: 5}
+      When il dipendente elimina le righe dal carrello i quali non hanno disponibilità in magazzino fn: svuota_articoli_esauriti
+      Then ritorna una lista uguale a righe_carrello perchè presente in magazzino
+
+    Scenario: test_svuota_articoli_esauriti_articoli_non_sufficenti
+      Given le righe_carrello [{
+        "nome": Sushi,
+        "prezzo_unitario": 30,
+        "quantita": 2,
+        "subtotale": round(prezzo_unitario * quantita, 2),
+      }] e il dizionario magazzino {Sushi: 0}
+      When il dipendente elimina le righe dal carrello i quali non hanno disponibilità in magazzino fn: svuota_articoli_esauriti
+      Then ritorna una lista senza il Sushi perchè non presente in magazzino
+  
