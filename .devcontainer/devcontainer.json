@@ -1,0 +1,14 @@
+{
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"vscjava.vscode-java-pack",
+				"SonarSource.sonarlint-vscode",
+				"ms-python.vscode-python-envs",
+				"ms-python.vscode-pylance",
+				"ms-python.python",
+				"ms-python.debugpy"
+			]
+		}
+	}
+}
