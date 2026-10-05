@@ -1,0 +1,9 @@
+openjdk version "25.0.4.1" 2026-08-18 LTS
+OpenJDK Runtime Environment Microsoft-14951822 (build 25.0.4.1+1-LTS)
+OpenJDK 64-Bit Server VM Microsoft-14951822 (build 25.0.4.1+1-LTS, mixed mode, sharing)
+
+Apache Maven 3.9.16 (2bdd9fddda4b155ebf8000e807eb73fd829a51d5)
+Maven home: /usr/local/sdkman/candidates/maven/current
+Java version: 25.0.4.1, vendor: Microsoft, runtime: /usr/local/sdkman/candidates/java/25.0.4+1-ms
+Default locale: en, platform encoding: UTF-8
+OS name: "linux", version: "6.8.0-1064-azure", arch: "amd64", family: "unix"
