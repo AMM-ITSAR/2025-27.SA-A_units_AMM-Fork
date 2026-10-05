@@ -1,0 +1,61 @@
+# Istruzioni per LLM
+# Feature indica il modulo java da importare il quale contiene le fn:
+# Gli Scenario sono i nomi delle funzioni di test che dovrai generare, annotandole con @Test
+# Given contiene la descrizione dei parametri di input
+# When descrive quali fn: del modulo da testare
+# Then contiene la descrizione delle asserzioni da svolgere
+
+
+
+Feature: Conto corrente
+
+#1 Creazione oggetto della classe
+Scenario: testIstanza
+    Given una istanza della classe
+    When creiamo una istanza con fn: new ContoCorrente()
+    Then il parametro saldo restituito dalla funzione getSaldo() deve essere uguale a 0
+
+#2 Assegnazione saldo
+Scenario: testSetSaldo
+    Given un conto corrente appena creato
+    When invochiamo la fn: setSaldo(100) 
+    Then se il saldo era ancora uguale a 0, il saldo viene settato, altrimenti viene restituito  IllegalArgumentException("non è possibile impostare un nuovo saldo, è necessario fare un acconto");
+
+
+#3 Deposito sul conto
+Scenario: testDepositaNormale
+    Given un conto corrente già creato
+    When invochiamo la fn: deposita() con un valore > 0
+    Then il saldo deve aumentare e la funzione restituisce true(verifica con fn: getSaldo)
+
+Scenario: testDepositaZero
+    Given un conto già creato
+    When invochiamo la fn: deposita(0)
+    Then il saldo non deve aumentare e la funzione restituisce false (verifica anche con fn: getSaldo)
+
+Scenario: testDepositaNegativo
+    Given un conto già creato
+    When invochiamo la fn: deposita() con un valore negativo
+    Then il saldo deve restare lo stesso di prima e la funzione restituisce false (verifica anche con fn: getSaldo)
+
+
+#4 Preleva dal conto
+Scenario: testPrelevaNormale
+    Given un conto corrente già creato
+    When invochiamo la fn: preleva() con un valore <= saldo
+    Then il saldo deve diminuire e la funzione restituisce true(verifica il nuovo valore con fn: getSaldo)
+
+Scenario: testPrelevaZero
+    Given un conto già creato
+    When invochiamo la fn: preleva(0)
+    Then il saldo non deve diminuire. La funzione restituisce true
+
+Scenario: testPrelevaNegativo
+    Given un conto già creato
+    When invochiamo la fn: preleva() con un valore negativo
+    Then il saldo aumenterà perchè non ho implementato controlli sui prelievi negativi. Controlla l'aumento con fn: getSaldo
+
+Scenario: testPrelevaMaggioreSaldo
+    Given un conto già creato
+    When invochiamo la fn: preleva() con un valore maggiore del contenuto del conto
+    Then la funzione deve restituire false e il valore non deve cambiare (verifica con fn: getSaldo)
