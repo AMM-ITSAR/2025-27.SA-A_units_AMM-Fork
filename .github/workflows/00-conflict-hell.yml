@@ -1,0 +1,10 @@
+name: The classroom roster!
+on:
+  push:
+
+jobs:
+  the-classroom-roster:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo '00 Prof - 🐧🐧🐧🐧🐧🐧'
+      # Below everyone should position at the right index in the roster
