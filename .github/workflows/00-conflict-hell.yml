@@ -9,5 +9,5 @@ jobs:
       - run: echo '00 Prof - 🐧🐧🐧🐧🐧🐧'
       # Below everyone should position at the right index in the roster
       - run: echo '03 Baez - 🐧🐧🐧🐧🐧🐧'
+      - run: echo '09 Carella - 🐧🐧🐧🐧🐧🐧'
       - run: echo '22 Musat - 🐧🐧🐧🐧🐧🐧'
-      - run: echo '9 Carella - 🐧🐧🐧🐧🐧🐧'
