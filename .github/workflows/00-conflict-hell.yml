@@ -12,4 +12,6 @@ jobs:
       - run: echo '03 Baez - 🐧🐧🐧🐧🐧🐧'
       - run: echo '07 Buongallino - 🐧🐧🐧🐧🐧🐧'
       - run: echo '09 Carella - 🐧🐧🐧🐧🐧🐧'
+      - run: echo '21 Ortuso - 🐧🐧🐧🐧🐧🐧'
       - run: echo '22 Musat - 🐧🐧🐧🐧🐧🐧'
+
