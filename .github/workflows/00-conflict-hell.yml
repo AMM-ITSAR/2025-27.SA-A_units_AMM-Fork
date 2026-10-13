@@ -13,5 +13,6 @@ jobs:
       - run: echo '07 Buongallino - 🐧🐧🐧🐧🐧🐧'
       - run: echo '09 Carella - 🐧🐧🐧🐧🐧🐧'
       - run: echo '12 DeMartino - 🐧🐧🐧🐧🐧🐧'
+      - run: echo '16 Ginisi - 🐧🐧🐧🐧🐧🐧'
       - run: echo '21 Ortuso - 🐧🐧🐧🐧🐧🐧'
       - run: echo '22 Musat - 🐧🐧🐧🐧🐧🐧'
