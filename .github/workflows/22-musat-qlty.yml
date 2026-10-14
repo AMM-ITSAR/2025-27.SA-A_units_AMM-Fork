@@ -5,8 +5,8 @@ on:
 jobs:
   qlty:
     runs-on: ubuntu-latest
-    steps:<
-      - run: echo '00 Prof - 🐧🐧🐧🐧🐧🐧'
+    steps:
+      - run: echo '22 Musat - 🐧🐧🐧🐧🐧🐧'
       - run: tree
       - name: Check out repository code
         uses: actions/checkout@v4
